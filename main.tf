@@ -50,7 +50,7 @@ resource "aws_security_group" "blog_everything_out" {
   type        = "egress"
   from_port   = 0
   to_port     = 0
-  protoco     = 0
+  protocol     = 0
   cidr_blocks = ["0.0.0.0/0"]
 
   aws_security_group_id = aws_security_group.blog.id
@@ -61,7 +61,7 @@ resource  "aws_security_group" "blog_http_in" {
   type        = "ingress"
   from_port   = 80
   to_port     = 80
-  protoco     = 'tcp'
+  protocol     = "tcp"
   cidr_blocks = ["0.0.0.0/0"]
 
   aws_security_group_id = aws_security_group.blog.id
