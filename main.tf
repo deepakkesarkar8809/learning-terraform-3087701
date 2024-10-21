@@ -39,7 +39,7 @@ resource "aws_security_group_rule" "blog_https_in" {
   type        = "ingress"
   from_port   = 443
   to_port     = 443
-  protocol    = 'tcp'
+  protocol    = "tcp"
   cidr_blocks = ["0.0.0.0/0"]
 
   aws_security_group_id = aws_security_group.blog.id
