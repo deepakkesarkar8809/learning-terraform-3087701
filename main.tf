@@ -10,15 +10,60 @@ data "aws_ami" "app_ami" {
     name   = "virtualization-type"
     values = ["hvm"]
   }
-
-  owners = ["979382823631"] # Bitnami
+  owners = ["211125348329"] # Bitnami
 }
 
-resource "aws_instance" "web" {
+data "aws_vpc" "default"{
+  default =true
+}
+
+resource "aws_instance" "blog" {
   ami           = data.aws_ami.app_ami.id
-  instance_type = "t2.micro"
+  instance_type = var.instance_type
+
+vpc_security_group_ids = [aws_security_group.blog.id]
 
   tags = {
-    Name = "HelloWorld"
+    Name = "Security Groups on AWS"
   }
+}
+
+resource "aws_security_group" "blog" {
+  name        = "blog" 
+  description = "Allow http and in. Allow everything out"
+
+  vp_id = data.aws_vpc.default.id
+}
+
+resource = "aws_security_group "blog_https_in" {
+
+  type        = "ingress"
+  from_port   = 443
+  to_port     = 443
+  protoco     = 'tcp'
+  cidr_blocks = ["0.0.0.0/0"]
+
+  aws_security_group_id = aws_security_group.blog.id
+}
+
+resource = "aws_security_group "blog_everything_out" {
+
+  type        = "egress"
+  from_port   = 0
+  to_port     = 0
+  protoco     = 0
+  cidr_blocks = ["0.0.0.0/0"]
+
+  aws_security_group_id = aws_security_group.blog.id
+}
+
+resource = "aws_security_group "blog_http_in" {
+
+  type        = "ingress"
+  from_port   = 80
+  to_port     = 80
+  protoco     = 'tcp'
+  cidr_blocks = ["0.0.0.0/0"]
+
+  aws_security_group_id = aws_security_group.blog.id
 }
