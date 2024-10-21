@@ -35,7 +35,7 @@ resource "aws_security_group" "blog" {
   vp_id = data.aws_vpc.default.id
 }
 
-resource = "aws_security_group "blog_https_in" {
+resource = "aws_security_group_rule" "blog_https_in" {
 
   type        = "ingress"
   from_port   = 443
