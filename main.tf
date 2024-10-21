@@ -24,8 +24,8 @@ resource "aws_instance" "blog" {
 vpc_security_group_ids = [aws_security_group.blog.id]
 
   tags = {
-    Name = "Security Groups on AWS"
-  }
+    Name = "WS"
+  }Security Groups on A
 }
 
 resource "aws_security_group" "blog" {
