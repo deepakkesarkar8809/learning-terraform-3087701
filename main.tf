@@ -24,11 +24,7 @@ resource "aws_instance" "blog" {
 vpc_security_group_ids = [aws_security_group.blog.id]
 
   tags = {
-<<<<<<< HEAD
     Name = "Security Groups on AWS"
-=======
-    Name = "Deepak's World"
->>>>>>> 0da4d6b61cc690bd016eedc10f2b442805934f36
   }
 }
 
